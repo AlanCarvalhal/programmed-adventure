@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Oficina.unity
     guid: 297dfab8481494b478f3adf0c809fd86
+  - enabled: 1
+    path: Assets/Scenes/Cidade.unity
+    guid: 12c318eabee70ff4d852aba2127b03f1
+  - enabled: 1
+    path: Assets/Scenes/Fazenda.unity
+    guid: f7cc55add40afd149bf878470b443751
   m_configObjects: {}

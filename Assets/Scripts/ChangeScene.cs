@@ -5,9 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    bool mouseOnObject;
-    private GameObject Jogador;
+    public bool mudarPosicao;
+    public Vector3 position;
+    public Vector3 rotation;
+    public Vector3 scale;
+    public int delayCena;
     public int cena;
+    public GameObject FadeScreen;
+    public AudioSource audio;
+    bool mouseOnObject;
+    private GameObject Jogador;    
     [Range(0.1f, 10.0f)] private float distancia = 7.5f;
 
     void Start()
@@ -19,7 +26,9 @@ public class ChangeScene : MonoBehaviour
     {
         if (mouseOnObject == true && Vector3.Distance(transform.position, Jogador.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
         {
-            SceneManager.LoadScene(cena);
+            StartCoroutine(WaitForSceneLoad());      
+            FadeScreen.GetComponent<Animation>().Play("FadeAnim");
+            audio.PlayDelayed(3);                  
         }
     }
     private void OnMouseEnter()
@@ -32,8 +41,9 @@ public class ChangeScene : MonoBehaviour
         mouseOnObject = false;
     }
 
-    public void MudaCena()
-    {
-        SceneManager.LoadScene(cena);
-    }
+    private IEnumerator WaitForSceneLoad() {
+    yield return new WaitForSeconds(delayCena);
+    SceneManager.LoadScene(cena);
+    
+}
 }
