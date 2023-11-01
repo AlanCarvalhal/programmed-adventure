@@ -13,6 +13,9 @@ TagManager:
   - button f2
   - button f1
   - button f6
+  - Player1
+  - Player2
+  - Player3
   layers:
   - Default
   - TransparentFX

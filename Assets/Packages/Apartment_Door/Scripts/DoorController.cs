@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class DoorController : MonoBehaviour
 {
+    public AudioSource abre;
+    public AudioSource fecha;
     public bool keyNeeded = false;              //Is key needed for the door
     public bool gotKey;                  //Has the player acquired key
     public GameObject keyGameObject;            //If player has Key,  assign it here
@@ -65,12 +67,14 @@ public class DoorController : MonoBehaviour
         {
             if (doorState == DoorState.Opened)
             {
-                txtToDisplay.GetComponent<Text>().text = "Press 'E' to Close";
+                txtToDisplay.GetComponent<Text>().text = "Pressione 'F' para fechar";
+                fecha.Play();
                 doorCollider.enabled = false;
             }
             else if (doorState == DoorState.Closed || gotKey)
             {
-                txtToDisplay.GetComponent<Text>().text = "Press 'E' to Open";
+                txtToDisplay.GetComponent<Text>().text = "Pressione 'F' para abrir";
+                abre.Play();
                 doorCollider.enabled = true;
             }
             else if (doorState == DoorState.Jammed)
