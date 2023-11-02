@@ -7,7 +7,13 @@ public class MenuOpcoes : MonoBehaviour
     public AudioMixer audioMixer;
     public void ControlaVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("volume", volume);      
+    }
+
+      public void ControlaSense(float sense)
+    {
+        //FirstPersonController.mouseSensitivity = sense;
+        Debug.Log(sense);
     }
 
     public void TelaCheia(bool telaCheia)

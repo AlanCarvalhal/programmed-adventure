@@ -6,9 +6,8 @@ public class DoorController : MonoBehaviour
     public AudioSource abre;
     public AudioSource fecha;
     public bool keyNeeded = false;              //Is key needed for the door
-    public bool gotKey;                  //Has the player acquired key
+    public bool gotKey;                         //Has the player acquired key
     public GameObject keyGameObject;            //If player has Key,  assign it here
-    public GameObject txtToDisplay;             //Display the information about how to close/open the door
 
     private bool playerInZone;                  //Check if the player is in the zone
     private bool doorOpened;                    //Check if door is currently opened or not
@@ -35,7 +34,6 @@ public class DoorController : MonoBehaviour
         playerInZone = false;                   //Player not in zone
         doorState = DoorState.Closed;           //Starting state is door closed
 
-        txtToDisplay.SetActive(false);
 
         doorAnim = transform.parent.gameObject.GetComponent<Animation>();
         doorCollider = transform.parent.gameObject.GetComponent<BoxCollider>();
@@ -50,14 +48,12 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        txtToDisplay.SetActive(true);
         playerInZone = true;
     }
 
     private void OnTriggerExit(Collider other)
     {
         playerInZone = false;
-        txtToDisplay.SetActive(false);
     }
 
     private void Update()
@@ -66,33 +62,29 @@ public class DoorController : MonoBehaviour
         if (playerInZone)
         {
             if (doorState == DoorState.Opened)
-            {
-                txtToDisplay.GetComponent<Text>().text = "Pressione 'F' para fechar";
-                fecha.Play();
+            {                
                 doorCollider.enabled = false;
             }
             else if (doorState == DoorState.Closed || gotKey)
             {
-                txtToDisplay.GetComponent<Text>().text = "Pressione 'F' para abrir";
-                abre.Play();
                 doorCollider.enabled = true;
             }
             else if (doorState == DoorState.Jammed)
             {
-                txtToDisplay.GetComponent<Text>().text = "Needs Key";
                 doorCollider.enabled = true;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && playerInZone)
+        if (Input.GetKeyDown(KeyCode.F) && playerInZone)
         {
             doorOpened = !doorOpened;           //The toggle function of door to open/close
 
             if (doorState == DoorState.Closed && !doorAnim.isPlaying)
             {
                 if (!keyNeeded)
-                {
+                {                    
                     doorAnim.Play("Door_Open");
+                    abre.Play();
                     doorState = DoorState.Opened;
                 }
                 else if (keyNeeded && !gotKey)
@@ -112,6 +104,7 @@ public class DoorController : MonoBehaviour
             if (doorState == DoorState.Opened && !doorAnim.isPlaying)
             {
                 doorAnim.Play("Door_Close");
+                fecha.Play();
                 doorState = DoorState.Closed;
             }
 
@@ -119,7 +112,7 @@ public class DoorController : MonoBehaviour
             {
                 if (doorAnim.GetClip("Door_Jam") != null)
                     doorAnim.Play("Door_Jam");
-                doorState = DoorState.Jammed;
+                    doorState = DoorState.Jammed;
             }
             else if (doorState == DoorState.Jammed && gotKey && !doorAnim.isPlaying)
             {
