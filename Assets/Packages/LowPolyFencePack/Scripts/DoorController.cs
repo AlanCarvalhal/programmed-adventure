@@ -23,7 +23,8 @@ namespace BrokenVector.LowPolyFencePack
         /// <returns>
         /// returns and sets the current door state
         /// </returns>
-        public DoorState CurrentState {
+        public DoorState CurrentState
+        {
             get
             {
                 return currentState;
@@ -53,6 +54,7 @@ namespace BrokenVector.LowPolyFencePack
 
         private Animation animator;
         private DoorState currentState;
+        private BoxCollider doorCollider;
 
         void Awake()
         {
@@ -62,7 +64,7 @@ namespace BrokenVector.LowPolyFencePack
                 Debug.LogError("Every DoorController needs an Animator.");
                 return;
             }
-            
+
             // animator settings
             animator.playAutomatically = false;
 
@@ -74,12 +76,13 @@ namespace BrokenVector.LowPolyFencePack
         }
 
         void Start()
-        {            
+        {
             // a little hack, to set the initial state
             currentState = InitialState;
             var clip = GetCurrentAnimation();
             animator[clip].speed = 9999;
             animator.Play(clip);
+            doorCollider = transform.gameObject.GetComponent<BoxCollider>();
         }
 
         /// <summary>
@@ -110,9 +113,15 @@ namespace BrokenVector.LowPolyFencePack
         public void ToggleDoor()
         {
             if (IsDoorOpen)
+            {
                 CloseDoor();
+                doorCollider.enabled = true;
+            }
             else
+            {
                 OpenDoor();
+                doorCollider.enabled = false;
+            }
         }
 
         private void Animate()

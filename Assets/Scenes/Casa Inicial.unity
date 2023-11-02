@@ -1079,9 +1079,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1000012403556238, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1311805869}
-    - targetCorrespondingSourceObject: {fileID: 1000012403556238, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1311805870}
   m_SourcePrefab: {fileID: 100100000, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
 --- !u!1 &1063491187 stripped
 GameObject:
@@ -1128,7 +1125,6 @@ MonoBehaviour:
   cena: 1
   FadeScreen: {fileID: 292698187}
   audio: {fileID: 248956344}
-  enableName: FirstPersonController
 --- !u!1 &1208883402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1228,18 +1224,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.88052696, y: 0.4713562, z: 0.49902695}
   m_Center: {x: 0, y: 0.23567814, z: 0}
---- !u!114 &1311805870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311805864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59c8707010b218840bd6e4ab0859e603, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1325809584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,7 +1567,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1311805870}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SolveChallenge, Assembly-CSharp
         m_MethodName: sendAnswer
         m_Mode: 1
