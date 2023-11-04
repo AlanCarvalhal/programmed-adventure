@@ -6,28 +6,38 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-    public bool mudarPosicao = false;
-    public Vector3 playerPosition;
-    public Vector3 playerRotation;
+    public static bool changePosition;
+    public static Vector3 position;
+    public bool changePositionValue;
+    public bool savePosition;
     public int delayCena;
     public int cena;
     public GameObject FadeScreen;
-    public AudioSource audio;
+    public AudioSource audio;       
     bool mouseOnObject;
-    private GameObject Jogador;
-    //private GameObject Enable;
-    //public string enableName;    
-    [Range(0.1f, 10.0f)] private float distancia = 7.5f;
+    private GameObject Player;
+
+//public static Quaternion rotation;
+[Range(0.1f, 10.0f)] private float distancia = 7.5f;
+
+    void Awake()
+    {
+        changePosition = changePositionValue;
+    }
 
     void Start()
     {
-        Jogador = GameObject.FindWithTag("Player");
+      Player = GameObject.FindWithTag("Player");
     }
 
     void Update()
     {
-        if (mouseOnObject == true && Vector3.Distance(transform.position, Jogador.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
+        if (mouseOnObject == true && Vector3.Distance(transform.position, Player.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
         {
+            if (savePosition)
+            {
+              position = Player.transform.position;
+            }
             StartCoroutine(WaitForSceneLoad());
             FadeScreen.GetComponent<Animation>().Play("FadeAnim");
             audio.PlayDelayed(3);
@@ -44,29 +54,8 @@ public class ChangeScene : MonoBehaviour
     }
 
     private IEnumerator WaitForSceneLoad()
-    {
-      yield return new WaitForSeconds(delayCena);
-      SceneManager.LoadScene(cena);
-      //Enable = GameObject.FindWithTag("Player1");
-      //Enable.SetActive(true);
-
-    }
-
+    {        
+        yield return new WaitForSeconds(delayCena);
+        SceneManager.LoadScene(cena);
+    }    
 }
-
-/*
-  if (mudarPosicao)
-        {
-            yield return new WaitForSeconds(delayCena);
-            SceneManager.LoadScene(cena);
-            Jogador = GameObject.FindGameObjectWithTag("Player");
-            Jogador.transform.position = playerPosition;
-            Jogador.transform.rotation = Quaternion.Euler(playerRotation);
-
-        }
-        if (!mudarPosicao)
-        {
-            yield return new WaitForSeconds(delayCena);
-            SceneManager.LoadScene(cena);
-        }
-*/
