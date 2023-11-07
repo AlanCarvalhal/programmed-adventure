@@ -6,10 +6,14 @@ using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-    public static bool changePosition;
-    public static Vector3 position;
-    public bool changePositionValue;
-    public bool savePosition;
+    public bool changeTutorial;
+    public bool changeFarm;
+    public bool changeWorkshop;
+    public bool changeHouse;    
+    public static bool house;   
+    public static bool tutorial;
+    public static bool farm;
+    public static bool workshop;
     public int delayCena;
     public int cena;
     public GameObject FadeScreen;
@@ -19,11 +23,11 @@ public class ChangeScene : MonoBehaviour
 
 //public static Quaternion rotation;
 [Range(0.1f, 10.0f)] private float distancia = 7.5f;
-
+    /*
     void Awake()
     {
-        changePosition = changePositionValue;
-    }
+      
+    }*/
 
     void Start()
     {
@@ -34,10 +38,11 @@ public class ChangeScene : MonoBehaviour
     {
         if (mouseOnObject == true && Vector3.Distance(transform.position, Player.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
         {
-            if (savePosition)
-            {
-              position = Player.transform.position;
-            }
+            house = changeHouse;
+            tutorial = changeTutorial;
+            farm = changeFarm;
+            workshop = changeWorkshop;
+
             StartCoroutine(WaitForSceneLoad());
             FadeScreen.GetComponent<Animation>().Play("FadeAnim");
             audio.PlayDelayed(3);

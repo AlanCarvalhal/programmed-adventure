@@ -12,8 +12,7 @@ public class MenuOpcoes : MonoBehaviour
 
       public void ControlaSense(float sense)
     {
-        //FirstPersonController.mouseSensitivity = sense;
-        Debug.Log(sense);
+        FirstPersonController.sensitivity = sense;
     }
 
     public void TelaCheia(bool telaCheia)

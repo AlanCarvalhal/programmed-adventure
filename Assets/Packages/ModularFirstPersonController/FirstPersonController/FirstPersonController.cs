@@ -27,6 +27,7 @@ public class FirstPersonController : MonoBehaviour
     public bool cameraCanMove = true;
     public float mouseSensitivity = 2f;
     public float maxLookAngle = 50f;
+    public static float sensitivity = 2f;
 
     // Crosshair
     public bool lockCursor = true;
@@ -362,6 +363,8 @@ public class FirstPersonController : MonoBehaviour
         {
             HeadBob();
         }
+
+        mouseSensitivity = sensitivity;
     }
 
     void FixedUpdate()
