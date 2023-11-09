@@ -22,12 +22,7 @@ public class ChangeScene : MonoBehaviour
     private GameObject Player;
 
 //public static Quaternion rotation;
-[Range(0.1f, 10.0f)] private float distancia = 7.5f;
-    /*
-    void Awake()
-    {
-      
-    }*/
+[Range(0.1f, 10.0f)] private float distancia = 7.5f;   
 
     void Start()
     {
