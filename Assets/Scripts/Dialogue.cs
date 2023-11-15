@@ -5,61 +5,78 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-
-    public TextMeshProUGUI textComponent;
-    public string[] lines;
+    public TextMeshProUGUI textDialogue;
+    public TextMeshProUGUI textMission;
+    public GameObject missionBox;
+    public bool changeMission;
+    public GameObject Dialoguebox;    
+    public string[] dialogueLines;
+    public string[] missionLines;
 
     private float textSpeed;
     private int index;
-
-    void Start()
-    {
-        textComponent.text = string.Empty;
-        StartDialogue();
-    }
-
+    private bool dontRepeat = false;
+    private bool aux = true;
+ 
     void Update()
     {
-      if(Input.GetMouseButtonDown(0))
-        {
-            if(textComponent.text == lines[index])
+            if (aux && Dialoguebox.activeSelf)
+            {
+            missionBox.SetActive(false);
+            textDialogue.text = string.Empty;
+            StartDialogue();
+            aux = false;
+            }
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F) && Dialoguebox.activeSelf)
+            {
+            if(textDialogue.text ==  dialogueLines[index])
             {
                 NextLine();
             }
             else
             {
                 StopAllCoroutines();
-                textComponent.text = lines[index];
+                textDialogue.text =  dialogueLines[index];
             }
         }
     }
 
     void StartDialogue()
-    {
-        index = 0;
-        StartCoroutine(TypeLine());
+    {        
+        if (!dontRepeat)index = 0;
+        if (dontRepeat) index = dialogueLines.Length - 1;
+        StartCoroutine(TypeLine());        
     }
 
     IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        foreach (char c in dialogueLines[index].ToCharArray())
         {
-            textComponent.text += c;
-            yield return new WaitForSeconds(4);
+            textDialogue.text += c;
+            yield return new WaitForSeconds(0.03f);
         }
     }
 
     void NextLine()
     {
-        if (index < lines.Length - 1)
+        if (index <  dialogueLines.Length - 1)
         {
             index++;
-            textComponent.text = string.Empty;
+            textDialogue.text = string.Empty;
             StartCoroutine(TypeLine());
-        }
+        }        
         else
-        {
-            gameObject.SetActive(false);
+        {            
+            if (changeMission && !dontRepeat)
+            {
+                textMission.text = missionLines[0];
+            }            
+            dontRepeat = true;
+            Dialoguebox.SetActive(false);
+            missionBox.SetActive(true);
+            aux = true;
         }
     }
+
+ 
 }

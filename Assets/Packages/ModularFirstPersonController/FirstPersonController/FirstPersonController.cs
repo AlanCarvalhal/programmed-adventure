@@ -24,7 +24,8 @@ public class FirstPersonController : MonoBehaviour
 
     public float fov = 60f;
     public bool invertCamera = false;
-    public bool cameraCanMove = true;
+    public  bool cameraCanMove;
+    public static bool cameraCanMoveStatic = true;
     public float mouseSensitivity = 2f;
     public float maxLookAngle = 50f;
     public static float sensitivity = 2f;
@@ -365,6 +366,7 @@ public class FirstPersonController : MonoBehaviour
         }
 
         mouseSensitivity = sensitivity;
+        cameraCanMove = cameraCanMoveStatic;
     }
 
     void FixedUpdate()

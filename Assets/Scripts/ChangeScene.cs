@@ -23,7 +23,7 @@ public class ChangeScene : MonoBehaviour
 
 //public static Quaternion rotation;
 [Range(0.1f, 10.0f)] private float distancia = 7.5f;   
-
+    
     void Start()
     {
       Player = GameObject.FindWithTag("Player");
@@ -31,6 +31,7 @@ public class ChangeScene : MonoBehaviour
 
     void Update()
     {
+        Player = GameObject.FindWithTag("Player");
         if (mouseOnObject == true && Vector3.Distance(transform.position, Player.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
         {
             house = changeHouse;

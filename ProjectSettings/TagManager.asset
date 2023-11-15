@@ -16,6 +16,11 @@ TagManager:
   - Player1
   - Player2
   - Player3
+  - pickuppoint
+  - waypoint
+  - stealingpoint
+  - sittingpoint
+  - Notebook
   layers:
   - Default
   - TransparentFX

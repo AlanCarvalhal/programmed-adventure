@@ -8,8 +8,7 @@ public class PauseMenu : MonoBehaviour
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
-    public GameObject blackScreen;
-    public FirstPersonController fpc;
+    public GameObject blackScreen;  
 
     void Update()
     {
@@ -34,7 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        fpc.cameraCanMove = true;
+        FirstPersonController.cameraCanMoveStatic = true;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -44,7 +43,7 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
-        fpc.cameraCanMove = false;
+        FirstPersonController.cameraCanMoveStatic = false;
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
