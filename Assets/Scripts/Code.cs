@@ -18,9 +18,11 @@ public class Code : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
-        Player.GetComponent<FirstPersonController>().enabled = false;
+        //Player.GetComponent<FirstPersonController>().enabled = false;
+        Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        FirstPersonController.cameraCanMoveStatic = false;
     }
 
     //Close(); certo
@@ -42,7 +44,9 @@ public class Code : MonoBehaviour
         if (activeLines != null) activeLines.SetActive(true);
         if (active != null) active.SetActive(true);
         Cursor.visible = false;
-        Player.GetComponent<FirstPersonController>().enabled = true;
+        FirstPersonController.cameraCanMoveStatic = true;
+        //Player.GetComponent<FirstPersonController>().enabled = true;
+        Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
     }
 

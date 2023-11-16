@@ -20,15 +20,15 @@ public class Dialogue : MonoBehaviour
  
     void Update()
     {
-            if (aux && Dialoguebox.activeSelf)
-            {
+        if (aux && Dialoguebox.activeSelf)
+        {
             missionBox.SetActive(false);
             textDialogue.text = string.Empty;
             StartDialogue();
             aux = false;
-            }
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F) && Dialoguebox.activeSelf)
-            {
+        }
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F) && Dialoguebox.activeSelf)
+        {
             if(textDialogue.text ==  dialogueLines[index])
             {
                 NextLine();
@@ -43,7 +43,7 @@ public class Dialogue : MonoBehaviour
 
     void StartDialogue()
     {        
-        if (!dontRepeat)index = 0;
+        if (!dontRepeat) index = 0;
         if (dontRepeat) index = dialogueLines.Length - 1;
         StartCoroutine(TypeLine());        
     }
