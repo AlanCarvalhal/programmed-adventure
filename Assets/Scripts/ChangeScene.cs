@@ -1,34 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ChangeScene : MonoBehaviour
 {
-    public bool changeTutorial;
-    public bool changeFarm;
-    public bool changeWorkshop;
-    public bool changeHouse;    
-    public static bool house;   
-    public static bool tutorial;
-    public static bool farm;
-    public static bool workshop;
+    public bool changePlayer = false;    
+    public GameObject playerAfter;   
     public int delayCena;
     public int cena;
     public GameObject FadeScreen;
     public AudioSource audio;       
     bool mouseOnObject;
     private GameObject Player;
+    public GameObject mission;
+    public string[] missionLines;
+    public TextMeshProUGUI textMission;
+    private bool dontRepeat = false;
+    public bool changeMission = false;
+    public bool finish = false;
 
-//public static Quaternion rotation;
-[Range(0.1f, 10.0f)] private float distancia = 7.5f;
-    /*
-    void Awake()
-    {
-      
-    }*/
-
+    //public static Quaternion rotation;
+    [Range(0.1f, 10.0f)] private float distancia = 7.5f;   
+    
     void Start()
     {
       Player = GameObject.FindWithTag("Player");
@@ -36,15 +32,21 @@ public class ChangeScene : MonoBehaviour
 
     void Update()
     {
+        Player = GameObject.FindWithTag("Player");
         if (mouseOnObject == true && Vector3.Distance(transform.position, Player.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
         {
-            house = changeHouse;
-            tutorial = changeTutorial;
-            farm = changeFarm;
-            workshop = changeWorkshop;
-
             StartCoroutine(WaitForSceneLoad());
-            FadeScreen.GetComponent<Animation>().Play("FadeAnim");
+            FadeScreen.SetActive(true);
+            if (mission != null) mission.SetActive(false);
+            if (changeMission && !dontRepeat && textMission != null)
+            {
+                textMission.text = missionLines[0];
+            }
+            if (changeMission && MovePlayer.bed && finish && textMission != null)
+            {
+                textMission.text = missionLines[0];
+            }
+            FadeScreen.GetComponent<Animation>().Play("FadeAnim");            
             audio.PlayDelayed(3);
         }
     }
@@ -59,8 +61,20 @@ public class ChangeScene : MonoBehaviour
     }
 
     private IEnumerator WaitForSceneLoad()
-    {        
-        yield return new WaitForSeconds(delayCena);
-        SceneManager.LoadScene(cena);
+    {
+        if (changePlayer)
+        {
+            yield return new WaitForSeconds(delayCena);            
+            Player.SetActive(false);
+            if (playerAfter != null) playerAfter.SetActive(true);
+            if (mission != null) mission.SetActive(true);
+            FadeScreen.SetActive(false);
+            dontRepeat = true;
+        }
+        else if(!changePlayer)
+        {
+            yield return new WaitForSeconds(delayCena);
+            SceneManager.LoadScene(cena);            
+        }
     }    
 }

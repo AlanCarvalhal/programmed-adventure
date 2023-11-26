@@ -8,16 +8,24 @@ public class PauseMenu : MonoBehaviour
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
     public GameObject optionsMenuUI;
+    public GameObject controlsMenuUI;
     public GameObject blackScreen;
-    public FirstPersonController fpc;
+    private GameObject codes;
+    private bool aux = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        codes = GameObject.FindWithTag("code");      
+        if (Input.GetKeyDown(KeyCode.Escape) && codes == null)
         {
             if (optionsMenuUI.activeSelf)
             {
                 optionsMenuUI.SetActive(false);
+                pauseMenuUI.SetActive(true);
+            }
+            else if (controlsMenuUI.activeSelf)
+            {
+                controlsMenuUI.SetActive(false);
                 pauseMenuUI.SetActive(true);
             }
             else if (GamePaused)
@@ -34,22 +42,22 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        fpc.cameraCanMove = true;
+        FirstPersonController.cameraCanMoveStatic = true;
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
-        blackScreen.SetActive(true);
+        //blackScreen.SetActive(true);
     }
 
     void Pause()
     {
-        fpc.cameraCanMove = false;
+        FirstPersonController.cameraCanMoveStatic = false;
         Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
-        blackScreen.SetActive(false);
+       // blackScreen.SetActive(false);
     }
 
     public void Menu()

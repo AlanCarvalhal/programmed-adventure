@@ -24,10 +24,11 @@ public class FirstPersonController : MonoBehaviour
 
     public float fov = 60f;
     public bool invertCamera = false;
-    public bool cameraCanMove = true;
+    public  bool cameraCanMove;
+    public static bool cameraCanMoveStatic = true;
     public float mouseSensitivity = 2f;
     public float maxLookAngle = 50f;
-    public static float sensitivity = 2f;
+    public static float sensitivity = 2f;   
 
     // Crosshair
     public bool lockCursor = true;
@@ -56,7 +57,7 @@ public class FirstPersonController : MonoBehaviour
 
     #region Movement Variables
 
-    public bool playerCanMove = true;
+    public static bool playerCanMove = true;
     public float walkSpeed = 5f;
     public float maxVelocityChange = 10f;
 
@@ -202,11 +203,11 @@ public class FirstPersonController : MonoBehaviour
     float camRotation;
 
     private void Update()
-    {
+    {     
         #region Camera
 
         // Control camera movement
-        if(cameraCanMove)
+        if (cameraCanMove)
         {
             yaw = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * mouseSensitivity;
 
@@ -365,12 +366,12 @@ public class FirstPersonController : MonoBehaviour
         }
 
         mouseSensitivity = sensitivity;
+        cameraCanMove = cameraCanMoveStatic;        
     }
 
     void FixedUpdate()
     {
         #region Movement
-
         if (playerCanMove)
         {
             // Calculate how fast we should be moving
@@ -617,9 +618,9 @@ public class FirstPersonController : MonoBehaviour
         GUILayout.Label("Movement Setup", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 13 }, GUILayout.ExpandWidth(true));
         EditorGUILayout.Space();
 
-        fpc.playerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), fpc.playerCanMove);
+        //fpc.playerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), fpc.playerCanMove);
 
-        GUI.enabled = fpc.playerCanMove;
+        //GUI.enabled = fpc.playerCanMove;
         fpc.walkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player will move while walking."), fpc.walkSpeed, .1f, fpc.sprintSpeed);
         GUI.enabled = true;
 

@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorAction : MonoBehaviour {
-
-
-   
-
-   
+public class DoorAction : MonoBehaviour {  
 
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-          
+        if (Input.GetKeyDown(KeyCode.F) && MovePlayer.office_door) 
+        {            
             RaycastHit hit;
 
             Physics.Raycast(transform.position,transform.TransformDirection(Vector3.forward), out hit);

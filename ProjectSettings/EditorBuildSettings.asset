@@ -1,35 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!1045 &1
-EditorBuildSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: Assets/Packages/FurnishedCabin/Scenes/Demo.unity
-    guid: 0bce5907d797a4cd8b0660dc119867e8
-  - enabled: 1
-    path: Assets/Scenes/Menu Principal.unity
-    guid: 7a948860d0660114097e238273b71835
-  - enabled: 1
-    path: Assets/Scenes/Casa Inicial.unity
-    guid: d66d6a17d496a354c9658c6cc026912c
-  - enabled: 1
-    path: Assets/Scenes/Cidade.unity
-    guid: 12c318eabee70ff4d852aba2127b03f1
-  - enabled: 1
-    path: Assets/Scenes/Fazenda.unity
-    guid: f7cc55add40afd149bf878470b443751
-  - enabled: 1
-    path: Assets/Scenes/Oficina.unity
-    guid: 297dfab8481494b478f3adf0c809fd86
-  - enabled: 1
-    path: Assets/Scenes/teste 1.unity
-    guid: 4d7095b0b3b3efb4289c578976c25bd3
-  - enabled: 1
-    path: Assets/Scenes/teste 3.unity
-    guid: a4d31e9e94e99e444a8286fef7df0aff
-  - enabled: 1
-    path: Assets/Scenes/teste 4.unity
-    guid: d2fe6e177cbf339429732c37b5ec4a6a
-  m_configObjects: {}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e6288c37e0850258954c40a47ee9c83cd29a845d1e965e5542d6b2f3798a3954
+size 820

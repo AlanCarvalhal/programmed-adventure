@@ -4,37 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MovePlayer : MonoBehaviour
-{
-    public GameObject playerTutorial;
-    public GameObject playerHouse;
-    public GameObject playerCityHouse;
-    public GameObject playerFarm;
-    public GameObject playerWorkshop;
-
-    void Awake()
+{    
+    public static bool bridge = false;
+    public static bool office_door = false;
+    public static bool library_door = false;
+    public static bool truck = false;
+    public static bool bed = false;
+    public GameObject farmer;
+    public GameObject bridge_Object;
+    public GameObject library_door_Object;
+    public GameObject truck_Object;
+    public GameObject bed_Object;
+   
+    private void Update()
     {
-        if (ChangeScene.tutorial)
+        if (bridge == true && bridge_Object != null) bridge_Object.SetActive(true);
+        if (bed == true && bed_Object != null) bed_Object.GetComponent<Interaction>().enabled = true;
+        if (truck == true && truck_Object != null)
         {
-            playerTutorial.SetActive(false);
-            playerHouse.SetActive(true);
+            farmer.SetActive(true);
+            truck_Object.SetActive(true);
         }
-        if (ChangeScene.farm)
-        {
-            playerCityHouse.SetActive(false);
-            playerFarm.SetActive(true);
-            playerWorkshop.SetActive(false);
-         }
-        if (ChangeScene.house)
-        {
-            playerCityHouse.SetActive(true);
-            playerFarm.SetActive(false);
-            playerWorkshop.SetActive(false);
-        }       
-        if (ChangeScene.workshop)
-        {
-            playerCityHouse.SetActive(false);
-            playerFarm.SetActive(false);
-            playerWorkshop.SetActive(true);
-        }
+        if (library_door == true && library_door_Object != null) library_door_Object.SetActive(true);
     }
 }
