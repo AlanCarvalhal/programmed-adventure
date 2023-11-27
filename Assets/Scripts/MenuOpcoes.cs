@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
+
 public class MenuOpcoes : MonoBehaviour
 {
     public AudioMixer audioMixer;
+    public Toggle limitFPS;
+    public Toggle unlimitedFPS;
     public void ControlaVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);      
+        AudioListener.volume = volume;
     }
 
       public void ControlaSense(float sense)
@@ -24,6 +28,7 @@ public class MenuOpcoes : MonoBehaviour
     {
         if (semLimite)
         {
+            limitFPS.isOn = false;
             Application.targetFrameRate = -1;
         }
     }
@@ -32,6 +37,7 @@ public class MenuOpcoes : MonoBehaviour
     {
         if (limite60)
         {
+            unlimitedFPS.isOn = false;
             Application.targetFrameRate = 60;
         }
     }

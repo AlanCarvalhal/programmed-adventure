@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayAudio : MonoBehaviour
 {
     public GameObject mission;
-    public AudioSource audio;
+    public AudioSource gameAudio;
     public int delayAudio;
     public GameObject FadeScreen;
     public GameObject inactive;
@@ -25,8 +25,9 @@ public class PlayAudio : MonoBehaviour
             mission.SetActive(false);
             FadeScreen.SetActive(true);
             FadeScreen.GetComponent<Animation>().Play("FadeAnim");
-            audio.PlayDelayed(3);
+            gameAudio.PlayDelayed(3);
             StartCoroutine(WaitForCutscene());
+
         }
     }
 
@@ -35,7 +36,7 @@ public class PlayAudio : MonoBehaviour
         Player = GameObject.FindWithTag("Player");
         if (mouseOnObject == true && Vector3.Distance(transform.position, Player.transform.position) < distancia && Input.GetKeyDown(KeyCode.F) && !cutscene)
         {                
-           audio.PlayDelayed(delayAudio);
+           gameAudio.PlayDelayed(delayAudio);
         }
     }
     private void OnMouseEnter()

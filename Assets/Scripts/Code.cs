@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class Code : MonoBehaviour
@@ -20,13 +19,11 @@ public class Code : MonoBehaviour
     public GameObject activeLines;
     public GameObject erroScreen;
     public TMP_InputField inputBox;
-    private TMP_InputField input;
     private GameObject Player;
     private string message;
     
     private void Start()
     {
-        if (input != null) input = inputBox.GetComponent<TMP_InputField>();
         Player = GameObject.FindWithTag("Player");        
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -76,14 +73,11 @@ public class Code : MonoBehaviour
 
     private IEnumerator WaitForSceneLoad()
     {
+        Time.timeScale = 1f;
         erroScreen.SetActive(true);
         yield return new WaitForSeconds(5);
         erroScreen.SetActive(false);
     }
-    /*public void SetMessage(string message)
-    {
-        this.message = message;
-    }*/
 
     //Close(); certo
     //StartCoroutine(WaitForSceneLoad()); erro
@@ -92,7 +86,7 @@ public class Code : MonoBehaviour
 
     public void ChallengeWakeUp()
     {
-        message = input.text;        
+        message = inputBox.text;
         if (
             message.Contains("if (jogador.deitado) {")
             && message.Contains("jogador.deitado = false;")
@@ -108,7 +102,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeOpenDoor()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("if (porta.id == chave.id_porta) {")
             && message.Contains("porta.trancado = false;")
@@ -123,7 +117,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeCleanPool()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("while (!piscina.limpa) {")
             && message.Contains("redinha.limpar(piscina);")
@@ -140,12 +134,11 @@ public class Code : MonoBehaviour
     }
     public void ChallengeFillPool()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("while(piscina.agua != 10000) {")
             && message.Contains("piscina.cloro = piscina.cloro + 4;")
             && message.Contains("piscina.agua = piscina.agua + 1000;")
-            && message.Contains("if (piscina.agua / piscina.cloro == 1000) {")
         )
         {
             Close();
@@ -157,7 +150,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeDogFood()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("while (int pote.comida != 200) {")
             && message.Contains("if (pote.comida < 200) {")
@@ -174,7 +167,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeOrganizeGarden()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("fila1[0] = 'jarra';")
             && message.Contains("fila1[1] = 'escorredor';")
@@ -199,7 +192,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeFertilizer()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("while (fertilizantes > 1 && armazem.fertilizante < 10) {")
             && (
@@ -221,7 +214,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeWaterPlant()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("for (planta of plantas) {")
             && (
@@ -240,7 +233,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeBoxes()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("for (int i = 0; i < caixa.Length; i++) {")
             && message.Contains("for (int j = 0; j < caixa[i].caixote.Length; j++) {")
@@ -260,7 +253,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeFruits()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("for each fruta in lista {")
             && message.Contains("jogador.pegar(fruta);")
@@ -275,7 +268,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeAnimalFood()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("for each animal in animais {")
             && message.Contains("quantidade_total_comida = quantidade_total_comida + (comida_necessaria[animal] * quantidade_animais[animal]);")
@@ -290,7 +283,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeBridge1()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("if (ponte.inteira == false) {")
             && message.Contains("pedreiro1.consertar();")
@@ -308,7 +301,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeBridge2()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("while(ponte.inteira == false) {")
             && message.Contains("switch (trabalho) {")
@@ -334,7 +327,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeBridge3()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("while (ponte.inteira == false) {")
             && message.Contains("switch (trabalho) {")
@@ -360,7 +353,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeTirePressure()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("pneu.tirarTampa();")
             && message.Contains("while (pneu.pressao < 36) {")
@@ -377,7 +370,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengePaintCar()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("if (carro.cor !== vermelho) {")
             && message.Contains("jogador.pintar(carro, 'vermelho');")
@@ -392,7 +385,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeCleanDesk()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("for (int i = 0; i < mesa.Length); i++ {")
             && message.Contains("if (mesa[i] == 'garrafa de agua' || mesa[i] == 'pasta' || mesa[i] == 'pacote') {")
@@ -412,7 +405,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeOrganizeFiles()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("prateleira[0] = 'preto';")
             && message.Contains("prateleira[1] = 'preto';")
@@ -434,7 +427,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeHelpTI()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("if (cadastro.ativo) {")
             && message.Contains("for (int i = 0; i <= cadastro.Length; i++) {")
@@ -450,7 +443,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeBossPC()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("computador.wifi.nome = 'sala do cassio';")
             && message.Contains("computador.wifi.senha = '123456';")
@@ -467,7 +460,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeLibraryPC()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("computador.volume = 0;")
             && message.Contains("computador.brilho = computador.brilho / 2;")
@@ -482,7 +475,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeLastBook()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("ultimoLivro = historico[historico.Length - 1];")
             || message.Contains("ultimoLivro = historico.pop();")
@@ -497,7 +490,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengePortugueseBooks()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("foreach(livro in historico) {")
             && message.Contains("if (livro.tema = 'Português') {")
@@ -516,7 +509,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeBiggestMathBook()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("foreach(livro in estante) {")
             && message.Contains("if (livro.paginas > maiorLivro.paginas) {")
@@ -532,7 +525,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeRemoveNotHistBook()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("foreach (livro in estanteHistoria) {")
             && message.Contains("if (livro.tema != 'História') {")
@@ -548,7 +541,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeOrganizeBooks()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("foreach (livro in livrosDaMesa) {")
             && message.Contains("switch (livro.tema) {")
@@ -578,7 +571,7 @@ public class Code : MonoBehaviour
     // escola (opcionais)
     public void ChallengeWritePortugueseQuestion()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("Console.WriteLine(“Escreva uma proparoxítona acentuada:”);")
             && message.Contains("string resposta  = Console.ReadLine();")
@@ -593,7 +586,7 @@ public class Code : MonoBehaviour
     }
     public void ChallengeWriteQuestion()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("Console.WriteLine(“Qual o seu nome?”)")
             && message.Contains("string nome = Console.ReadLine();")
@@ -611,7 +604,7 @@ public class Code : MonoBehaviour
 
     public void ChallengeFirstLetterFruit()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("Console.WriteLine(“Digite uma fruta que começa com uma vogal?”)")
             && message.Contains("string frutaVogal = Console.ReadLine();")
@@ -630,7 +623,7 @@ public class Code : MonoBehaviour
 
     public void ChallengeCalcArea()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("area = (15 * 25) / 2")
         )
@@ -645,7 +638,7 @@ public class Code : MonoBehaviour
 
     public void ChallengeCircleArea()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("area = (17 * 17) * 3,14")
         )
@@ -660,7 +653,7 @@ public class Code : MonoBehaviour
 
     public void ChallengeCalcFunction()
     {
-        message = input.text;
+        message = inputBox.text;
         if (
             message.Contains("y = (10 * (5^2)) + (8 * 5) + 12")
         )

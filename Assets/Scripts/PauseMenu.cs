@@ -11,7 +11,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject controlsMenuUI;
     public GameObject blackScreen;
     private GameObject codes;
-    private bool aux = false;
 
     void Update()
     {
@@ -44,6 +43,7 @@ public class PauseMenu : MonoBehaviour
     {
         FirstPersonController.cameraCanMoveStatic = true;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
@@ -54,6 +54,7 @@ public class PauseMenu : MonoBehaviour
     {
         FirstPersonController.cameraCanMoveStatic = false;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;

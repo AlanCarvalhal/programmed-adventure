@@ -841,8 +841,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 317751330}
   m_HandleRect: {fileID: 150370118}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 1
+  m_MinValue: 0
+  m_MaxValue: 2
   m_WholeNumbers: 0
   m_Value: 1
   m_OnValueChanged:
@@ -1633,6 +1633,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 28a455fd15ad7984dba8a391cf38cd85, type: 2}
+  limitFPS: {fileID: 1985874714}
+  unlimitedFPS: {fileID: 178632644}
 --- !u!1 &886902870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,7 +2886,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 146fbbeddef3a0b4d9e25a31d243e68d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3497,8 +3499,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 8.677673}
-  m_SizeDelta: {x: 0, y: 17.355}
+  m_AnchoredPosition: {x: 16.72937, y: -0.00012207031}
+  m_SizeDelta: {x: 45.6693, y: 34.7103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1736828473
 MonoBehaviour:
@@ -3802,22 +3804,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 933397723}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 558278751}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 933397725}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: Fechar
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -20,21 +20,20 @@ public class Interaction : MonoBehaviour
     public bool finish = false;
 
     private Animator m_Animator;
-    private GameObject notebook;
-    private Camera camera;
+    private Camera playerCamera;
     private bool aux = true;
     [Range(0.1f, 20.0f)] public float distancia = 7.5f;  
 
     void Start()
     {
-       camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>() as Camera;
     }
 
     void Update()
     {
-        camera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>() as Camera;
-        m_Animator = camera.GetComponent<Animator>();
-        if (mouseOnObject == true && Vector3.Distance(transform.position, camera.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
+        playerCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>() as Camera;
+        m_Animator = playerCamera.GetComponent<Animator>();
+        if (mouseOnObject == true && Vector3.Distance(transform.position, playerCamera.transform.position) < distancia && Input.GetKeyDown(KeyCode.F))
         {
             if (code)
             {
@@ -48,7 +47,10 @@ public class Interaction : MonoBehaviour
                 if (auxInactive != null) auxInactive.SetActive(false);
                 if (auxActive != null) auxActive.SetActive(true);
                 if (auxActive_lines != null && aux) auxActive_lines.SetActive(true);
-                if (note) textMission.text = missionLines[0];
+                if (note) {
+                    FirstPersonController.cameraCanMoveStatic = false;
+                    textMission.text = missionLines[0];
+                }
                 aux = false;
             }
         }
